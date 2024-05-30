@@ -174,6 +174,10 @@ for(i in 1:1000){
 	#print(pred)
 
 	ss[i] = paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y)))==pred
+	if(ss[i]==0) {
+		print(paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y))))
+		print(pred)
+	}
 	cli::cli_progress_message(paste(" Epoca: ",i, " ", " Positive: ", sum(ss), sep=""))
 }
 }
