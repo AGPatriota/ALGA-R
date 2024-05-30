@@ -1,7 +1,7 @@
 # ALGA: Arbitrary Length Generalization for Addition in R
 
 
-Abstract: Under autoregressive generation, if a (small) transformer can perform addition of two numbers with two digits each, then it should also be able to perform addition for numbers of unseen digit lengths, whenever the training procedure is properly defined. 
+Abstract: This paper introduces a novel training methodology that enables a small transformer model to generalize the addition of two-digit numbers to numbers with unseen lengths of digits. The proposed approach employs an autoregressive generation technique, processing from right to left, mimicking the human method for adding large numbers. To the best of my knowledge, this methodology has not been previously explored in the literature\footnote{The R codes can be found in: \url{https://github.com/AGPatriota/ALGA-R/}}.
 
 This is an R implementation of ALGA for R.
 
