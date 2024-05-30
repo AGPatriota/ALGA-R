@@ -172,7 +172,7 @@ for(i in 1:1000){
 	num1 = as.numeric(unlist(strsplit(as.character(num), "")))
 	#print(paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y))))
 	#print(pred)
-
+        pred = sub("^0+", "", pred)
 	ss[i] = paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y)))==pred
 	if(ss[i]==0) {
 		print(paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y))))
