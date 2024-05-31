@@ -5,6 +5,7 @@ Abstract: This paper introduces a novel training methodology that enables a smal
 
 This is an R implementation of ALGA for R.
 
+[paper uploaded in ArXiv](https://drive.google.com/file/d/1vztXI8m6_qhIi69d4RiggaUGLs_HWGxD/view?usp=sharing)
 
 ## Dependencies:
 
