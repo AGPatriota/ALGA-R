@@ -130,20 +130,11 @@ dev.off()
 if(!config$train){
 library(gmp)
 
-Intercalar = function(input){
-	num = strsplit(unlist(strsplit(input, "\\+")), "")
-	na = length(num[[1]])
-	nb = length(num[[2]])
-	num[[1]] = c(rep("0", max(na,nb)-na), num[[1]])
-	num[[2]] = c(rep("0", max(na,nb)-nb), num[[2]])
-	return(paste(paste(num[[1]], num[[2]], sep=""), collapse=""))
-}
-
 ss = numeric()
 n0 = config$digits
 for(i in 1:1000){
-	x = paste0(sample(0:9,n0, replace=TRUE), collapse="")
-	y = paste0(sample(0:9,n0, replace=TRUE), collapse="")
+	x = paste0(sample(0:9,sample(1:n0,1), replace=TRUE), collapse="")
+	y = paste0(sample(0:9,sample(1:n0,1), replace=TRUE), collapse="")
 	num = Intercalar(paste(x,"+", y, sep=""))
 	temp=list()
 	num0 =  strsplit(num, "")[[1]]
@@ -152,6 +143,7 @@ for(i in 1:1000){
 	num1 =  c(Encoder(num1))
 	temp[[1]]= Generate(num1,Model=model,block_size_out=config$block_size_out,max_new_tokens=config$max, print=FALSE)
 	s=0
+	if(N>=2){
 	for(l in (1:(N/2))*2) {
 		s=s+1		
 		num1 = num0[(length(num0)-l-1):(length(num0)-l)]
@@ -159,6 +151,7 @@ for(i in 1:1000){
 		nn = length(num1)
 		num1 = c(num1,rep(1, config$block_size-nn))
 		temp[[s+1]]= Generate(num1,Model=model,block_size_out=config$block_size_out,max_new_tokens=config$max, print=FALSE)
+	}
 	}
 	aux = function(s) temp[[s]][length(temp[[s]])]
 	ind = length(temp):1
@@ -170,12 +163,12 @@ for(i in 1:1000){
 		pred = paste(Decoder(c(a,sapply(ind,aux))), collapse="")
 	}
 	num1 = as.numeric(unlist(strsplit(as.character(num), "")))
-	#print(paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y))))
-	#print(pred)
-        pred = sub("^0+", "", pred)
-	ss[i] = paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y)))==pred
+        pred = ifelse(pred==0, pred, sub("^0+", "", pred))
+	x0 = as.bigz(ifelse(as.numeric(x)==0, x, sub("^0+", "",x)))
+	y0 = as.bigz(ifelse(as.numeric(y)==0, y, sub("^0+", "",y)))
+	ss[i] =  (x0+y0) == pred
 	if(ss[i]==0) {
-		print(paste(as.bigz(sub("^0+", "",x)) + as.bigz(sub("^0+", "",y))))
+		print(x0+y0)
 		print(pred)
 	}
 	cli::cli_progress_message(paste(" Epoca: ",i, " ", " Positive: ", sum(ss), sep=""))
