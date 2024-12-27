@@ -1,13 +1,16 @@
-# ALGA: Arbitrary Length Generalization for Addition in R
+# ALGA: Arbitrary Length Generalization for Addition in R and Python
 
 
-Abstract: This paper introduces a novel training methodology that enables a small transformer model to generalize the addition of two-digit numbers to numbers with unseen lengths of digits. The proposed approach employs an autoregressive generation technique, processing from right to left, mimicking the human method for adding large numbers. To the best of my knowledge, this methodology has not been previously explored in the literature\footnote{The R codes can be found in: \url{https://github.com/AGPatriota/ALGA-R/}}.
+Abstract: This paper introduces a novel training methodology that enables a  Transformer model to generalize the addition of two-digit numbers to numbers with unseen lengths of digits. The proposed approach employs an autoregressive generation technique, processing from right to left, which mimics a common manual method for adding large numbers. To the best of my knowledge, this methodology has not been previously explored in the literature. All results are reproducible, and the corresponding R and Python codes are available at: [github](https://github.com/AGPatriota/ALGA-R/) and [kaggle notebook](https://www.kaggle.com/code/agpatriota/alga-py/notebook).
 
-This is an R implementation of ALGA for R.
+This is an implementation of ALGA for R and Python.
 
 [paper uploaded in ArXiv](https://drive.google.com/file/d/1vztXI8m6_qhIi69d4RiggaUGLs_HWGxD/view?usp=sharing)
 
-## Dependencies:
+## In Python
+See the kaggle [notebook](https://www.kaggle.com/code/agpatriota/alga-py).
+
+## Dependencies in R:
 
 - [torch](https://cran.r-project.org/web/packages/torch/index.html) 
 - [stringr](https://cran.r-project.org/web/packages/stringr/index.html)
